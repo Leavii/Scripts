@@ -1,0 +1,23 @@
+Description=Start docker containers on startup
+
+Wants=network.target
+
+After=syslog.target network-online.target
+
+[Service]
+
+Type=simple
+
+ExecStartPre=/bin/sleep 30
+
+ExecStart=bash /usr/local/bin/docker_startup.sh
+
+Restart=on-failure
+
+RestartSec=5
+
+KillMode=process
+
+[Install]
+
+WantedBy=multi-user.target
